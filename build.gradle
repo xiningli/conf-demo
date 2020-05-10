@@ -1,0 +1,35 @@
+plugins {
+	id 'org.springframework.boot' version '2.2.7.RELEASE'
+	id 'io.spring.dependency-management' version '1.0.9.RELEASE'
+	id 'java'
+}
+
+group = 'com.xyniac'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+apply plugin: 'maven'
+apply plugin: 'java'
+
+repositories {
+	mavenCentral()
+	maven { url "${System.env.HOME}/.m2/repository" }
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+	testImplementation('org.springframework.boot:spring-boot-starter-test') {
+		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+	}
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	compile group: 'com.google.code.gson', name: 'gson', version: '2.8.5'
+
+	compile 'com.xyniac:xyniac-dynamic-config_2.13:0.1.0-SNAPSHOT'
+	compile group: 'org.scala-lang.modules', name: 'scala-parallel-collections_2.13', version: '0.2.0'
+	compile group: 'org.json4s', name: 'json4s-native_2.13', version: '3.6.7'
+	compile group: "com.github.marschall" ,name: "memoryfilesystem" ,version: "2.1.0"
+
+}
+
+test {
+	useJUnitPlatform()
+}
